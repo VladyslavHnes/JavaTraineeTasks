@@ -9,47 +9,19 @@ import static org.junit.Assert.*;
 
 public class FirstTaskTest {
 
-
-    @Test
-    public void testValidateLetters() {
-        String string = "gl123";
-        boolean thrown = false;
-        try {
-            FirstTask.validateLetters(string);
-        }
-        catch(Exception e) {
-            thrown = true;
-        }
-        assertTrue(thrown);
-    }
-
     @Test
     public void testIsAnagram() throws Exception {
         String firstString = "luck";
         String secondString = "lack";
-        String result = FirstTask.isAnagram(firstString,secondString);
+        String result = FirstTask.getStringToMakeAnagrams(firstString,secondString);
         assertEquals("[u]",  result);
     }
 
-    @Test
-    public void testCheckLength() {
+    @Test(expected = Exception.class)
+    public void testCheckLength() throws Exception {
         String firstString = "four";
         String secondString = "seven";
-        boolean thrown = false;
-        try {
-            FirstTask.checkLength(firstString,secondString);
-        }
-        catch(Exception e) {
-            thrown = true;
-        }
-        assertTrue(thrown);
-    }
-
-    @Test
-    public void testPreProcess() {
-        String parameter = "STRING";
-        char [] array = {'s','t','r','i','n','g'};
-        assertArrayEquals(array,FirstTask.preProcess(parameter));
+        FirstTask.checkLength(firstString,secondString);
     }
 
     @Test
@@ -57,9 +29,6 @@ public class FirstTaskTest {
         Map<Character, Integer> map = new HashMap<>();
         map.put('a',2);
         assertEquals(map,FirstTask.letterMap("aa".toCharArray()));
-
     }
-
-
 
 }
