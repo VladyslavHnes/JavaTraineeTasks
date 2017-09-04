@@ -8,7 +8,7 @@ public class FirstTask {
         Scanner scanner = new Scanner(System.in);
         String firstString = scanner.nextLine();
         String secondString = scanner.nextLine();
-        System.out.println(isAnagram(firstString,secondString));
+        System.out.println(getStringToMakeAnagrams(firstString,secondString));
     }
 
     /* This method compares lengths of strings.
@@ -18,22 +18,6 @@ public class FirstTask {
         if (first.length() != second.length()) {
             throw new Exception("Unequal lengths of words");
         }
-    }
-
-    /* This method checks if current string is acceptable.
-     * String must contain only letters.
-     */
-    static void validateLetters(String input) {
-        for (char character: input.toCharArray()) {
-            if (!Character.isLetter(character)) {
-                throw new IllegalArgumentException("Input strings must contain only letters.");
-            }
-        }
-    }
-
-    /* This method sets all chars to lower case, so we can work with them */
-    static char[] preProcess(String input) {
-        return input.toLowerCase().toCharArray();
     }
 
     /* We create a hash map, in which the key is character(letter)
@@ -52,14 +36,11 @@ public class FirstTask {
         return map;
     }
 
-
-    static String isAnagram(String firstWord, String secondWord) throws Exception {
+    static String getStringToMakeAnagrams(String firstWord, String secondWord) throws Exception {
         checkLength(firstWord, secondWord);
-        validateLetters(firstWord);
-        validateLetters(secondWord);
 
-        char[] firstArray = preProcess(firstWord);
-        char[] secondArray = preProcess(secondWord);
+        char[] firstArray = firstWord.toCharArray();
+        char[] secondArray = secondWord.toCharArray();
 
         Map<Character, Integer> firstMap = letterMap(firstArray);
         Map<Character, Integer> secondMap = letterMap(secondArray);
